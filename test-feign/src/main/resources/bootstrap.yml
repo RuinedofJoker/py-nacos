@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: test-ai
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 127.0.0.1:8848
+        namespace: fe84cfd2-e510-4a4a-815d-749341820650
+        group: DEV_GROUP
+        username: nacos
+        password: nacos
+      config:
+        # 配置中心地址
+        server-addr: 127.0.0.1:8848
+        namespace: fe84cfd2-e510-4a4a-815d-749341820650
+        group: DEV_GROUP
+        username: nacos
+        password: nacos
+        # 配置文件格式
+        file-extension: yaml
+        # 共享配置
+        shared-configs:
+          - data-id: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+            group: DEV_GROUP
+            refresh: true
+
+server:
+  port: 8081
